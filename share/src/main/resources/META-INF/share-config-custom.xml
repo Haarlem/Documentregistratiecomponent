@@ -1,0 +1,389 @@
+<alfresco-config>
+
+    <!-- Document Library config section -->
+    <config evaluator="string-compare" condition="DocumentLibrary"
+        replace="false">
+        <!-- Used by the "Change Type" action Define valid subtypes using the following 
+            example: <type name="cm:content"> <subtype name="cm:mysubtype" /> </type> 
+            Remember to also add the relevant i18n string(s): cm_mysubtype=My SubType -->
+        <types>
+            <type name="cm:content">
+                <subtype name="zsdms:document" />
+            </type>
+
+            <type name="cm:folder">
+                <subtype name="zsdms:zaaktype" />
+                <subtype name="zsdms:zaak" />
+            </type>
+        </types>
+    </config>
+
+	<config evaluator="node-type" condition="zsdms:document">
+		<forms>
+			<form>
+				<field-visibility>
+					<show id="zsdms:documentIdentificatie"  for-mode="view"/>
+					<show id="zsdms:dct.omschrijving" />
+					<show id="cm:title" />
+					<show id="cm:description"/>
+					<show id="zsdms:documentbeschrijving" />
+					<show id="zsdms:documentcreatiedatum" />
+					<show id="zsdms:documentontvangstdatum" />
+					
+					<show id="zsdms:zaakidentificatie"  for-mode="view"/>
+					<show id="zsdms:vertrouwelijkaanduiding" />
+					<show id="zsdms:documentLink" />
+					<show id="tmlo:externKenmerk" />
+
+					<show id="cm:creator"/>
+					<show id="zsdms:documentauteur" />
+
+					<show id="tmlo:verantwoordelijkeFunctionaris" />
+					<show id="tmlo:ondertekening" />
+					<show id="zsdms:documentverzenddatum" />
+
+					<show id="zsdms:documentversie" />
+					<show id="cm:versionLabel"/>
+					<show id="zsdms:documentstatus" />
+					<show id="cm:modified"/>
+					<show id="cm:modifier"/>
+					<show id="cm:lastThumbnailModification"/>
+					<show id="cm:versionType"/>
+					<show id="cm:autoVersion"/>
+					<show id="cm:initialVersion"/>
+					
+					<show id="cm:name"/>
+					<show id="size"/>
+					<show id="mimetype"/>
+					<show id="cm:created"/>
+					<show id="zsdms:documenttaal" />
+					<show id="encoding"/>
+
+					<show id="sys:locale"/>
+					
+				</field-visibility>
+				<appearance>
+					<set id="doc" appearance="bordered-panel" label="Document" />
+					<set id="extra" appearance="bordered-panel" label="Extra kenmerken" />
+					<set id="b-intern" appearance="bordered-panel" label="Betrokkenen (intern)" />
+					<set id="o-en-v" appearance="bordered-panel" label="Ondertekening en verzending" />
+					<set id="versie" appearance="bordered-panel" label="Versiebeheer" />
+					<set id="bestand" appearance="bordered-panel" label="Bestand" />
+					<set id="overig" appearance="bordered-panel" label="Overig" />
+					<field id="zsdms:documentIdentificatie" label="Document identificatie" set="doc" />
+					<field id="zsdms:dct.omschrijving" label="Documenttype omschrijving" set="doc" />
+					<field id="cm:title" label="Titel" set="doc" />
+					<field id="cm:description" label="Beschrijving" set="doc" />
+					<field id="zsdms:documentbeschrijving" label="Document beschrijving" set="doc" />
+					<field id="zsdms:documentcreatiedatum" label="Datum gemaakt" set="doc" />					
+					<field id="zsdms:documentontvangstdatum" label="Document ontvangst datum" set="doc" />
+					
+					<field id="zsdms:zaakidentificatie" label="Zaak identificatie" set="extra" />
+					<field id="zsdms:vertrouwelijkaanduiding" label="Vertrouwelijkaanduiding" set="extra" />
+					<field id="zsdms:documentLink" label="Document link" set="extra" />
+					<field id="tmlo:externKenmerk" label="Extern kenmerk" set="extra" />
+
+					<field id="cm:creator" label="Maker" set="b-intern"/>
+					<field id="zsdms:documentauteur" label="Document auteur" set="b-intern" />
+
+					<field id="tmlo:verantwoordelijkeFunctionaris" label="Verantwoordelijke functionaris" set="o-en-v" />
+					<field id="tmlo:ondertekening" label="Ondertekening" set="o-en-v" />
+					<field id="zsdms:documentverzenddatum" label="Document verzend datum" set="o-en-v" />
+
+					<field id="zsdms:documentversie" label="Document versie" set="versie" />
+					<field id="cm:versionLabel" label="Versielabel" set="versie" />
+					<field id="zsdms:documentstatus" label="Document status" set="versie" />
+					<field id="cm:modified" label="Datum gewijzigd" set="versie" />
+					<field id="cm:modifier" label="Gewijzigd door" set="versie" />
+					<field id="cm:lastThumbnailModification" label="Last thumbnail modification data" set="versie" />
+					<field id="cm:versionType" label="Version type" set="versie" />
+					<field id="cm:autoVersion" label="Automatische versie" set="versie" />
+					<field id="cm:initialVersion" label="Oorspronkelijke versie" set="versie" />
+					<field id="cm:autoVersionOnUpdateProps" label="Auto Version - on update properties only" set="versie" />
+					
+					<field id="cm:name" label="Naam" set="bestand" />
+					<field id="size" label="Grootte" set="bestand"/>
+					<field id="mimetype" label="Mimetype" set="bestand"/>
+					<field id="cm:created" label="Document creatie datum" set="bestand"/>
+					<field id="zsdms:documenttaal" label="Document taal" set="bestand" />
+					<field id="encoding" label="Codering" set="bestand"/>
+
+					<field id="sys:locale" label="Landinstelling" set="overig"/>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+	<config evaluator="node-type" condition="zsdms:zaaktype" >
+		<forms>
+			<form>
+				<field-visibility>
+					<show id="cm:name" />
+					<show id="zsdms:Zaaktype-omschrijving"  for-mode="view"/>
+				</field-visibility>
+				<appearance>
+					<set id="zaaktype" appearance="bordered-panel" label="Gegevens van het zaaktype" />
+					<field id="cm:name" label="Naam" set="zaaktype" />
+					<field id="zsdms:Zaaktype-omschrijving" label="Zaaktype" set="zaaktype" />
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+	<config evaluator="node-type" condition="zsdms:zaak" >
+		<forms>
+			<form>
+				<field-visibility>
+					<show id="zsdms:zaakidentificatie"  for-mode="view"/>
+					<show id="cm:name" />
+					<show id="zsdms:zaakniveau" />
+					<show id="zsdms:deelzakenindicatie" />
+					<show id="zsdms:registratiedatum" />
+					<show id="zsdms:startdatum" />
+					<show id="cm:created"/>
+					<show id="zsdms:einddatum" />
+					
+					<show id="zsdms:inp.bsn" />
+					<show id="zsdms:ann.identificatie" />
+					<show id="zsdms:inn.nnpId" />
+					<show id="zsdms:anp.identificatie" />
+
+					<show id="zsdms:organisatieidentificatie" />
+					<show id="cm:creator"/>
+					<show id="zsdms:medewerkeridentificatie" />
+					<show id="zsdms:vestigingsNummer" />
+
+					<show id="zsdms:resultaatomschrijving" />
+					<show id="zsdms:archiefnominatie" />
+					<show id="zsdms:datumVernietigDossier" />
+					
+					<show id="cm:modified"/>
+					<show id="cm:modifier"/>
+					
+					<show id="sys:locale"/>
+				</field-visibility>
+				<appearance>
+					<set id="zaak" appearance="bordered-panel" label="Zaak" />
+					<set id="b-extern" appearance="bordered-panel" label="Betrokkenen (extern)" />
+					<set id="b-intern" appearance="bordered-panel" label="Betrokkenen (intern)" />
+					<set id="archief" appearance="bordered-panel" label="Archief" />
+					<set id="audit" appearance="bordered-panel" label="Audit" />
+					<set id="overig" appearance="bordered-panel" label="Overig" />
+					<field id="zsdms:zaakidentificatie" label="Zaak identificatie" set="zaak" />
+					<field id="cm:name" label="Naam" set="zaak" />
+					<field id="zsdms:zaakniveau" label="Zaakniveau" set="zaak" />
+					<field id="zsdms:deelzakenindicatie" label="Indicatie deelzaken" set="zaak" />
+					<field id="zsdms:registratiedatum" label="Registratiedatum zaak" set="zaak" />
+					<field id="zsdms:startdatum" label="Startdatum zaak" set="zaak" />
+					<field id="cm:created" label="Datum gemaakt" set="zaak"/>
+					<field id="zsdms:einddatum" label="Einddatum zaak" set="zaak" />
+					
+					<field id="zsdms:inp.bsn" label="Burger service nummer initiator" set="b-extern" />
+					<field id="zsdms:ann.identificatie" label="Nummer van ander niet natuurlijk persoon (initiator)" set="b-extern" />
+					<field id="zsdms:inn.nnpId" label="Nummer van buitenlands niet natuurlijk persoon (initiator)" set="b-extern" />
+					<field id="zsdms:anp.identificatie" label="Nummer van ander natuurlijk persoon (initiator)" set="b-extern" />
+
+					<field id="zsdms:organisatieidentificatie" label="Organisatieidentificatie initiator" set="b-intern" />
+					<field id="cm:creator" lable="Maker" set="b-intern"/>
+					<field id="zsdms:medewerkeridentificatie" label="Medewerkeridentificatie initiator" set="b-intern" />
+					<field id="zsdms:vestigingsNummer" label="Vestigingsnummer (initiator)" set="b-intern" />
+
+					<field id="zsdms:resultaatomschrijving" label="Resultaatomschrijving zaak" set="archief" />
+					<field id="zsdms:archiefnominatie" label="Archiefnominatie zaak" set="archief" />
+					<field id="zsdms:datumVernietigDossier" label="Vernietigingsdatum zaak" set="archief" />
+					
+					<field id="cm:modified" label="Datum gewijzigd" set="audit"/>
+					<field id="cm:modifier" label="Gewijzigd door" set="audit"/>
+					
+					<field id="sys:locale" label="Landinstelling" set="overig"/>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+
+    <config replace="true" evaluator="string-compare" condition="AdvancedSearch">
+        <advanced-search>
+            <!-- Forms for the advanced search type list -->
+            <forms>
+                <!-- The 'form' config element contains the name of the model type of 
+                    the form to display. The element supports the following optional attributes: 
+                    id = form id, the id of "search" will be assumed if not set label = label 
+                    text to display - defaults to model type if not set labelId = I18N message 
+                    id of label text to display description = description text to display descriptionId 
+                    = I18N message id of description text to display -->
+                <form label="Zaakdocument" description="Document zoeken binnen een zaakdossier">zsdms:document</form>
+                <form label="Zaakdossier" description="Zaakdossier opzoeken">zsdms:zaak</form>
+            </forms>
+        </advanced-search>
+    </config>
+
+	<config evaluator="model-type" condition="zsdms:document">
+		<forms>
+			<form id="search">
+				<field-visibility>
+					<show id="zsdms:documentIdentificatie"  for-mode="view"/>
+					<show id="zsdms:dct.omschrijving" />
+					<show id="cm:title" />
+					<show id="cm:description"/>
+					<show id="zsdms:documentbeschrijving" />
+					<show id="zsdms:documentcreatiedatum" />
+					<show id="zsdms:documentontvangstdatum" />
+					
+					<show id="zsdms:zaakidentificatie"  for-mode="view"/>
+					<show id="zsdms:vertrouwelijkaanduiding" />
+					<show id="zsdms:documentLink" />
+					<show id="tmlo:externKenmerk" />
+
+					<show id="cm:creator"/>
+					<show id="zsdms:documentauteur" />
+
+					<show id="tmlo:verantwoordelijkeFunctionaris" />
+					<show id="tmlo:ondertekening" />
+					<show id="zsdms:documentverzenddatum" />
+
+					<show id="zsdms:documentversie" />
+					<show id="cm:versionLabel"/>
+					<show id="zsdms:documentstatus" />
+					<show id="cm:modified"/>
+					<show id="cm:modifier"/>
+					<show id="cm:lastThumbnailModification"/>
+					<show id="cm:versionType"/>
+					<show id="cm:autoVersion"/>
+					<show id="cm:initialVersion"/>
+					
+					<show id="cm:name"/>
+					<show id="size"/>
+					<show id="mimetype"/>
+					<show id="cm:created"/>
+					<show id="zsdms:documenttaal" />
+					<show id="encoding"/>
+
+					<show id="sys:locale"/>
+					
+				</field-visibility>
+				<appearance>
+					<set id="doc" appearance="bordered-panel" label="Document" />
+					<set id="extra" appearance="bordered-panel" label="Extra kenmerken" />
+					<set id="b-intern" appearance="bordered-panel" label="Betrokkenen (intern)" />
+					<set id="o-en-v" appearance="bordered-panel" label="Ondertekening en verzending" />
+					<set id="versie" appearance="bordered-panel" label="Versiebeheer" />
+					<set id="bestand" appearance="bordered-panel" label="Bestand" />
+					<set id="overig" appearance="bordered-panel" label="Overig" />
+					<field id="zsdms:documentIdentificatie" label="Document identificatie" set="doc" />
+					<field id="zsdms:dct.omschrijving" label="Documenttype omschrijving" set="doc" />
+					<field id="cm:title" label="Titel" set="doc" />
+					<field id="cm:description" label="Beschrijving" set="doc" />
+					<field id="zsdms:documentbeschrijving" label="Document beschrijving" set="doc" />
+					<field id="zsdms:documentcreatiedatum" label="Datum gemaakt" set="doc" />					
+					<field id="zsdms:documentontvangstdatum" label="Document ontvangst datum" set="doc" />
+					
+					<field id="zsdms:zaakidentificatie" label="Zaak identificatie" set="extra" />
+					<field id="zsdms:vertrouwelijkaanduiding" label="Vertrouwelijkaanduiding" set="extra" />
+					<field id="zsdms:documentLink" label="Document link" set="extra" />
+					<field id="tmlo:externKenmerk" label="Extern kenmerk" set="extra" />
+
+					<field id="cm:creator" label="Maker" set="b-intern"/>
+					<field id="zsdms:documentauteur" label="Document auteur" set="b-intern" />
+
+					<field id="tmlo:verantwoordelijkeFunctionaris" label="Verantwoordelijke functionaris" set="o-en-v" />
+					<field id="tmlo:ondertekening" label="Ondertekening" set="o-en-v" />
+					<field id="zsdms:documentverzenddatum" label="Document verzend datum" set="o-en-v" />
+
+					<field id="zsdms:documentversie" label="Document versie" set="versie" />
+					<field id="cm:versionLabel" label="Versielabel" set="versie" />
+					<field id="zsdms:documentstatus" label="Document status" set="versie" />
+					<field id="cm:modified" label="Datum gewijzigd" set="versie" />
+					<field id="cm:modifier" label="Gewijzigd door" set="versie" />
+					<field id="cm:lastThumbnailModification" label="Last thumbnail modification data" set="versie" />
+					<field id="cm:versionType" label="Version type" set="versie" />
+					<field id="cm:autoVersion" label="Automatische versie" set="versie" />
+					<field id="cm:initialVersion" label="Oorspronkelijke versie" set="versie" />
+					<field id="cm:autoVersionOnUpdateProps" label="Auto Version - on update properties only" set="versie" />
+					
+					<field id="cm:name" label="Naam" set="bestand" />
+					<field id="size" label="Grootte" set="bestand"/>
+					<field id="mimetype" label="Mimetype" set="bestand"/>
+					<field id="cm:created" label="Document creatie datum" set="bestand"/>
+					<field id="zsdms:documenttaal" label="Document taal" set="bestand" />
+					<field id="encoding" label="Codering" set="bestand"/>
+
+					<field id="sys:locale" label="Landinstelling" set="overig"/>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+	<config evaluator="model-type" condition="zsdms:zaak">
+		<forms>
+			<form id="search">
+				<field-visibility>
+					<show id="zsdms:zaakidentificatie"  for-mode="view"/>
+					<show id="cm:name" />
+					<show id="zsdms:zaakniveau" />
+					<show id="zsdms:deelzakenindicatie" />
+					<show id="zsdms:registratiedatum" />
+					<show id="zsdms:startdatum" />
+					<show id="cm:created"/>
+					<show id="zsdms:einddatum" />
+					
+					<show id="zsdms:inp.bsn" />
+					<show id="zsdms:ann.identificatie" />
+					<show id="zsdms:inn.nnpId" />
+					<show id="zsdms:anp.identificatie" />
+
+					<show id="zsdms:organisatieidentificatie" />
+					<show id="cm:creator"/>
+					<show id="zsdms:medewerkeridentificatie" />
+					<show id="zsdms:vestigingsNummer" />
+
+					<show id="zsdms:resultaatomschrijving" />
+					<show id="zsdms:archiefnominatie" />
+					<show id="zsdms:datumVernietigDossier" />
+					
+					<show id="cm:modified"/>
+					<show id="cm:modifier"/>
+					
+					<show id="sys:locale"/>
+				</field-visibility>
+				<appearance>
+					<set id="zaak" appearance="bordered-panel" label="Zaak" />
+					<set id="b-extern" appearance="bordered-panel" label="Betrokkenen (extern)" />
+					<set id="b-intern" appearance="bordered-panel" label="Betrokkenen (intern)" />
+					<set id="archief" appearance="bordered-panel" label="Archief" />
+					<set id="audit" appearance="bordered-panel" label="Audit" />
+					<set id="overig" appearance="bordered-panel" label="Overig" />
+					<field id="zsdms:zaakidentificatie" label="Zaak identificatie" set="zaak" />
+					<field id="cm:name" label="Naam" set="zaak" />
+					<field id="zsdms:zaakniveau" label="Zaakniveau" set="zaak" />
+					<field id="zsdms:deelzakenindicatie" label="Indicatie deelzaken" set="zaak" />
+					<field id="zsdms:registratiedatum" label="Registratiedatum zaak" set="zaak" />
+					<field id="zsdms:startdatum" label="Startdatum zaak" set="zaak" />
+					<field id="cm:created" label="Datum gemaakt" set="zaak"/>
+					<field id="zsdms:einddatum" label="Einddatum zaak" set="zaak" />
+					
+					<field id="zsdms:inp.bsn" label="Burger service nummer initiator" set="b-extern" />
+					<field id="zsdms:ann.identificatie" label="Nummer van ander niet natuurlijk persoon (initiator)" set="b-extern" />
+					<field id="zsdms:inn.nnpId" label="Nummer van buitenlands niet natuurlijk persoon (initiator)" set="b-extern" />
+					<field id="zsdms:anp.identificatie" label="Nummer van ander natuurlijk persoon (initiator)" set="b-extern" />
+
+					<field id="zsdms:organisatieidentificatie" label="Organisatieidentificatie initiator" set="b-intern" />
+					<field id="cm:creator" lable="Maker" set="b-intern"/>
+					<field id="zsdms:medewerkeridentificatie" label="Medewerkeridentificatie initiator" set="b-intern" />
+					<field id="zsdms:vestigingsNummer" label="Vestigingsnummer (initiator)" set="b-intern" />
+
+					<field id="zsdms:resultaatomschrijving" label="Resultaatomschrijving zaak" set="archief" />
+					<field id="zsdms:archiefnominatie" label="Archiefnominatie zaak" set="archief" />
+					<field id="zsdms:datumVernietigDossier" label="Vernietigingsdatum zaak" set="archief" />
+					
+					<field id="cm:modified" label="Datum gewijzigd" set="audit"/>
+					<field id="cm:modifier" label="Gewijzigd door" set="audit"/>
+					
+					<field id="sys:locale" label="Landinstelling" set="overig"/>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+	
+
+</alfresco-config>
