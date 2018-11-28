@@ -1,4 +1,4 @@
-<p style="text-align: center"><a href="http://haarlem.github.io/"><img src="https://haarlem.github.io/assets/haarlem-open-source-logo.svg" style="width: 30%; margin-left: -15%;"></a></p>
+<p align="center"><a href="http://haarlem.github.io/"><img src="https://haarlem.github.io/assets/haarlem-open-source-logo.svg" width="30%"></a></p>
 
 # Documentregistratiecomponent: Alfresco TMLO and ZDS module
 
